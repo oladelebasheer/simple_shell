@@ -1,34 +1,33 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
-#include <sys/wait.h>
-#include <sys/types.h>
+#ifndef SHELL_H
+#define SHELL_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <unistd.h>
-#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 #include <limits.h>
-#include <string.h>
+#include <time.h>
 
 extern char **environ;
 
-char *show_input(void);
-void prompt(void);
-char *_strcat(char *src);
-int _strlen(char *str);
-void place(char *str);
-char *findfile(char *command);
-char *find_command(char *command);
-int compare(char *s1, char *s2);
-int _strcmpdir(char *s1, char *s2);
-int charput(char c);
-void place(char *str);
-char *str_concat(char *s1, char *s2);
-int lookforslash(char *cmd);
-int compareExit(char *s1, char *s2);
-int compareEnv(char *s1, char *s2);
-void execute_proc(char **cmd);
-char **identify_string(char *parameter);
-void controlC(int sig);
+int _strcmp(char *str1, char *str2);
+int verify_path(char **arguments);
+char *_strdup(char *str);
+char *append_command(char *dir_path, char *command);
+int exec(char **arguments);
+int fill_args(char *entry, char **arguments);
+int print_numbers(int n);
+int _strlen(const char *string);
+int print_not_found(char **arguments, int counter);
+char *_getenv(char *global_var);
+int _printp(const char *prompt, unsigned int size);
+int _putchar(char c);
+int exist(char *pathname);
+void free_grid(char **grid, int heigth);
+void last_free(char *entry);
+int verify_blt(char **arguments, int exit_stat);
+
 #endif
